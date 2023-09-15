@@ -56,6 +56,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             </Button>
             <PrismicNextImage
               field={slice.primary.image}
+              priority={true}
               className="drop-shadow-xl max-w-4xl w-full"
             />
           </div>
@@ -86,6 +87,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             </div>
             <PrismicNextImage
               field={slice.primary.image}
+              priority={true}
               className="drop-shadow-xl max-w-4xl w-full"
             />
           </div>
@@ -100,6 +102,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           <div className="grid grid-cols-1 md:grid-cols-2 place-items-center">
             <PrismicNextImage
               field={slice.primary.image}
+              priority={true}
               className="drop-shadow-xl max-w-4xl w-full"
             />
             <div className="grid grid-rows-[1fr,auto,auto] h-fit">

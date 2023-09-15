@@ -25,9 +25,6 @@
             },
             "hero": {
               "type": "SharedSlice"
-            },
-            "text_with_image": {
-              "type": "SharedSlice"
             }
           }
         }

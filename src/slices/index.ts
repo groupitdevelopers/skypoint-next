@@ -6,5 +6,4 @@ export const components = {
   call_to_action: dynamic(() => import("./TextBox")),
   features: dynamic(() => import("./Dashboard")),
   hero: dynamic(() => import("./DoubleCard")),
-  text_with_image: dynamic(() => import("./Image")),
 };
