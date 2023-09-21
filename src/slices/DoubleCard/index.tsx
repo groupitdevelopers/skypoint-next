@@ -88,7 +88,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             <PrismicNextImage
               field={slice.primary.image}
               priority={true}
-              className="drop-shadow-xl max-w-4xl w-full"
+              className="drop-shadow-xl max-w-xl w-full"
             />
           </div>
         </Bounded>

@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | ImageSlice
   | HeroSlice
   | FeaturesSlice
   | CallToActionSlice;
@@ -85,6 +86,7 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | ImageSlice
   | CallToActionSlice
   | FeaturesSlice
   | HeroSlice;
@@ -620,6 +622,86 @@ type HeroSliceVariation =
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
+/**
+ * Primary content in *Image → Primary*
+ */
+export interface ImageSliceDefaultPrimary {
+  /**
+   * Image field in *Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text field in *Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Image Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *Image → Primary*
+ */
+export interface ImageSliceSimpleImagePrimary {
+  /**
+   * Image field in *Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Simple Image variation for Image Slice
+ *
+ * - **API ID**: `simpleImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageSliceSimpleImage = prismic.SharedSliceVariation<
+  "simpleImage",
+  Simplify<ImageSliceSimpleImagePrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Image*
+ */
+type ImageSliceVariation = ImageSliceDefault | ImageSliceSimpleImage;
+
+/**
+ * Image Shared Slice
+ *
+ * - **API ID**: `image`
+ * - **Description**: Image
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageSlice = prismic.SharedSlice<"image", ImageSliceVariation>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -657,6 +739,12 @@ declare module "@prismicio/client" {
       HeroSliceDefault,
       HeroSliceHorizontal,
       HeroSliceHorizontalLeftImage,
+      ImageSlice,
+      ImageSliceDefaultPrimary,
+      ImageSliceSimpleImagePrimary,
+      ImageSliceVariation,
+      ImageSliceDefault,
+      ImageSliceSimpleImage,
     };
   }
 }
