@@ -18,21 +18,23 @@ const Image = ({ slice }: ImageProps): JSX.Element => {
       data-slice-variation={slice.variation}
     >
       {slice.variation === "default" &&
-        <div className="relative overflow-hidden content-center">
+        <div className="relative overflow-hidden content-center drop-shadow-xl">
           <PrismicNextImage
             field={slice.primary.image}
+            priority={true}
             className="object-cover w-full invisible sm:visible"
           />
           {slice.primary.text &&
-            <div className="absolute opacity-100 sm:opacity-80 text-center bg-none sm:bg-slate-200 py-2 w-full font-extrabold text-2xl text-slate-700 bottom-0">
+            <h3 className="textBorder absolute text-5xl w-full text-center text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
               {slice.primary.text}
-            </div>
+            </h3>
           }
         </div>
       }
       {slice.variation === "simpleImage" &&
         <PrismicNextImage
           field={slice.primary.image}
+          priority={true}
           className="mx-auto"
         />
       }

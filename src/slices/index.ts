@@ -7,4 +7,5 @@ export const components = {
   features: dynamic(() => import("./Dashboard")),
   hero: dynamic(() => import("./DoubleCard")),
   image: dynamic(() => import("./Image")),
+  info_box: dynamic(() => import("./InfoBox")),
 };

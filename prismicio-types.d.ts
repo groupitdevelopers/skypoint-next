@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | InfoBoxSlice
   | ImageSlice
   | HeroSlice
   | FeaturesSlice
@@ -86,6 +87,7 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | InfoBoxSlice
   | ImageSlice
   | CallToActionSlice
   | FeaturesSlice
@@ -702,6 +704,51 @@ type ImageSliceVariation = ImageSliceDefault | ImageSliceSimpleImage;
  */
 export type ImageSlice = prismic.SharedSlice<"image", ImageSliceVariation>;
 
+/**
+ * Primary content in *InfoBox → Primary*
+ */
+export interface InfoBoxSliceDefaultPrimary {
+  /**
+   * Info Text field in *InfoBox → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: info_box.primary.info_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  info_text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for InfoBox Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type InfoBoxSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<InfoBoxSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *InfoBox*
+ */
+type InfoBoxSliceVariation = InfoBoxSliceDefault;
+
+/**
+ * InfoBox Shared Slice
+ *
+ * - **API ID**: `info_box`
+ * - **Description**: InfoBox
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type InfoBoxSlice = prismic.SharedSlice<
+  "info_box",
+  InfoBoxSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -745,6 +792,10 @@ declare module "@prismicio/client" {
       ImageSliceVariation,
       ImageSliceDefault,
       ImageSliceSimpleImage,
+      InfoBoxSlice,
+      InfoBoxSliceDefaultPrimary,
+      InfoBoxSliceVariation,
+      InfoBoxSliceDefault,
     };
   }
 }
